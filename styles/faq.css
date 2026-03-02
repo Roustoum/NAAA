@@ -1,0 +1,314 @@
+:root {
+
+    /* Animations */
+    --cubic-default: cubic-bezier(0.625, 0.05, 0, 1);
+    --duration-default-double: 1.2s;
+    /* Double of default */
+    --duration-default-onehalf: 0.9s;
+    /* One & Half of default */
+    --duration-default: 0.6s;
+    --duration-default-half: 0.3s;
+    /* Half of default */
+    --animation-default-double: var(--duration-default-double) var(--cubic-default);
+    --animation-default-onehalf: var(--duration-default-onehalf) var(--cubic-default);
+    --duration-default-quarter: 0.15s;
+    /* Quarter of default */
+    --animation-default: var(--duration-default) var(--cubic-default);
+    --animation-default-half: var(--duration-default-half) var(--cubic-default);
+    --animation-default-quarter: var(--duration-default-quarter) var(--cubic-default);
+    --animation-ease: 0.2s ease;
+    --animation-ease-double: 0.4s ease;
+    --cubic-bounce: linear(0, 0.5737 7.6%, 0.8382 11.87%, 0.9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, 0.9995 46.99%, 0.9872 51.63%, 0.9842 58.77%, 1.0011 81.26%, 1);
+}
+
+/* ------------------------- ACCORDION -------------------------  */
+/* Animate Accordion Bottom Grid */
+.footer-link__col-bottom {
+    transition: grid-template-rows var(--duration-default) var(--cubic-default);
+}
+
+[data-accordion-status="active"] .footer-link__col-bottom {
+    grid-template-rows: 1fr;
+}
+
+/* Animate Icon */
+.footer-link__col-icon {
+    transition: transform var(--duration-default) var(--cubic-default);
+}
+
+[data-accordion-status="active"] .footer-link__col-icon {
+    transform: rotate(315deg);
+}
+
+/* ------------------------- FAQs -------------------------  */
+/* Animate Accordion Bottom Grid */
+.faq__item-bottom {
+    transition: grid-template-rows var(--duration-default) var(--cubic-default);
+}
+
+[data-accordion-status="active"] .faq__item-bottom {
+    grid-template-rows: 1fr;
+}
+
+/* Animate Icon */
+.faq__item-icon {
+    transition: transform var(--duration-default) var(--cubic-default);
+}
+
+[data-accordion-status="active"] .faq__item-icon {
+    transform: rotate(315deg);
+}
+
+/* showing/hiding of collection */
+[data-collection-status="not-active"] {
+    display: none;
+}
+
+.faq[data-theme-section="dark"] .faq__title-scribble {
+    color: var(--color-electric);
+}
+
+.faq[data-theme-section="dark"] .faq__item-top,
+.faq[data-theme-section="dark"] .faq__list {
+    border-color: var(--color-neutral-600);
+}
+
+/* toggles */
+[data-faq-toggle][data-toggle-status="active"] {
+    border-radius: calc(var(--btn-height) / 2);
+}
+
+[data-theme-section="dark"] [data-faq-toggle][data-toggle-status="active"] {
+    color: var(--color-neutral-800) !important
+}
+
+[data-theme-section="dark"] [data-faq-toggle][data-toggle-status="active"] [data-wf--button-theme--variant] {
+    background-color: var(--color-neutral-200);
+}
+
+[data-theme-section="dark"] [data-faq-toggle]:not([data-toggle-status="active"]) {
+    color: var(--color-neutral-200) !important;
+}
+
+[data-theme-section="dark"] [data-faq-toggle]:not([data-toggle-status="active"]) [data-wf--button-theme--variant] {
+    background-color: var(--color-neutral-600);
+}
+
+[data-theme-section="light"] [data-faq-toggle][data-toggle-status="active"] {
+    color: var(--color-neutral-200) !important
+}
+
+[data-theme-section="light"] [data-faq-toggle][data-toggle-status="active"] [data-wf--button-theme--variant] {
+    background-color: var(--color-neutral-800);
+}
+
+.faq__item-bottom {
+    grid-template-rows: 0fr;
+    display: grid;
+    position: relative;
+    overflow: hidden
+}
+
+.faq__item-bottom-wrap {
+    flex-flow: column;
+    height: 100000%;
+    display: flex;
+    position: relative;
+    overflow: hidden
+}
+
+.faq__item-bottom-content {
+    padding-bottom: var(--gap-sm)
+}
+
+.faq__wrap {
+    position: relative
+}
+
+.faq__collection {
+    width: 100%
+}
+
+.faq__list {
+    border-bottom: 1px solid var(--color-neutral-400)
+}
+
+.faq__item-top {
+    padding-top: var(--gap-sm);
+    padding-bottom: var(--gap-sm);
+    grid-column-gap: var(--gap-m);
+    grid-row-gap: var(--gap-m);
+    border-top: var(--stroke-weight)solid var(--color-neutral-400);
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex
+}
+
+.faq__item-icon {
+    aspect-ratio: 1;
+    flex: none;
+    width: .75em
+}
+
+/* ------------------------- FORMS -------------------------  */
+/* Field: Error */
+[data-validate].is--error input,
+[data-validate].is--error textarea,
+[data-validate].is--error select {
+    border-color: var(--color-coral);
+}
+
+[data-validate].is--error .form-field-icon.is--error,
+[data-validate].is--error .radiocheck-field-icon.is--error {
+    opacity: 1;
+}
+
+/* Field: Success */
+[data-validate].is--success .form-field-icon.is--success,
+[data-validate].is--success .radiocheck-field-icon.is--success {
+    opacity: 1;
+}
+
+/* Field: Custom Radio or Checkbox */
+[data-form-validate] .radiocheck-field input:focus-visible~.radiocheck-custom {
+    background-color: var(--color-neutral-400);
+    color: var(--color-neutral-400);
+}
+
+[data-form-validate] .radiocheck-field input:hover~.radiocheck-custom {
+    border-color: var(--color-neutral-450);
+}
+
+[data-form-validate] .radiocheck-field input:focus-visible:checked~.radiocheck-custom,
+[data-form-validate] .radiocheck-field input:checked~.radiocheck-custom {
+    background-color: var(--color-purple);
+    color: var(--color-light);
+    border-color: var(--color-purple) !important;
+}
+
+[data-form-validate] .radiocheck-field .radiocheck-label.is--small {
+    margin-top: 0.125em;
+}
+
+[data-validate].is--error .radiocheck-custom {
+    border-color: var(--color-coral);
+}
+
+[data-validate].is--error input:checked~.radiocheck-custom {
+    border-color: var(--color-dark);
+}
+
+/* Field: Select */
+[data-form-validate] select:has(option[value=""]:checked) {
+    color: rgba(19, 19, 19, 0.3);
+}
+
+[data-form-theme="dark"] .form-input {
+    color: var(--color-light);
+    background-color: var(--color-neutral-800);
+}
+
+[data-form-theme="dark"] .form-input:hover,
+[data-form-theme="dark"] .form-input:focus,
+[data-form-theme="dark"] .form-input:focus-within {
+    border-color: var(--color-neutral-525);
+}
+
+[data-form-theme="dark"] [data-validate].is--error .form-input {
+    border-color: var(--color-coral);
+}
+
+[data-form-theme="dark"] .form-input::placeholder {
+    color: var(--color-neutral-525);
+}
+
+[data-form-theme="dark"] .form-label {
+    color: var(--color-neutral-200);
+}
+
+[data-form-theme="dark"] .radiocheck-label {
+    color: var(--color-neutral-400);
+}
+
+[data-form-theme="dark"] .radiocheck-custom {
+    color: var(--color-neutral-525);
+    background-color: currentColor;
+}
+
+[data-form-theme="dark"] .radiocheck-field input:hover~.radiocheck-custom {
+    border-color: var(--color-neutral-500);
+}
+
+[data-form-theme="dark"] .form-notifcation,
+[data-form-theme="dark"] .form-notifcation.is--error {
+    background-color: transparent;
+}
+
+/* Text links */
+
+[data-underline-link] {
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+[data-underline-link]::before,
+[data-underline-link="alt"]::before,
+[data-underline-link="alt"]::after {
+    content: "";
+    position: absolute;
+    bottom: -0.0625em;
+    left: 0;
+    width: 100%;
+    height: 0.0625em;
+    background-color: currentColor;
+    transition: transform var(--duration-default) var(--cubic-default);
+    transform-origin: right;
+    transform: scaleX(0) rotate(0.001deg);
+}
+
+[data-underline-link].nav-bar__big-span::before {
+    bottom: -0.175em;
+    height: calc(0.0625 / 3);
+}
+
+[data-underline-link="alt"]::before {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+    transition-delay: 0.3s;
+}
+
+[data-underline-link="alt"]::after {
+    transform-origin: right;
+    transform: scaleX(0) rotate(0.001deg);
+    transition-delay: 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    [data-hover]:hover [data-underline-link]::before,
+    [data-underline-link]:hover::before {
+        transform-origin: left;
+        transform: scaleX(1) rotate(0.001deg);
+    }
+
+    [data-hover]:hover [data-underline-link="alt"]::before,
+    [data-underline-link="alt"]:hover::before {
+        transform-origin: right;
+        transform: scaleX(0) rotate(0.001deg);
+        transition-delay: 0s;
+    }
+
+    [data-hover]:hover [data-underline-link="alt"]::after,
+    [data-underline-link="alt"]:hover::after {
+        transform-origin: left;
+        transform: scaleX(1) rotate(0.001deg);
+        transition-delay: 0.3s;
+    }
+}
+
+:is(.wf-design-mode, .wf-editor) .home-hero__cards-list {
+    opacity: 1;
+}

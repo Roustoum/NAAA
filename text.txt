@@ -1,0 +1,8 @@
+<div class="home-hero_feed-item-slide-headline">
+                        Our Vision
+                      </div>
+                      <div class="home-hero_feed-item-slide-title text-pretty">
+                        Bringing Algerian professionals in North America
+                        together to build meaningful connections and drive
+                        growth between communities.
+                      </div>
