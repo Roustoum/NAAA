@@ -763,9 +763,6 @@
   .text-pretty {
     text-wrap: pretty;
   }
-  .text-wrap\! {
-    text-wrap: wrap !important;
-  }
   .text-\[\#201D1D\] {
     color: #201D1D;
   }
