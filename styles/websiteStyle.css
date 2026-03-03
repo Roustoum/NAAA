@@ -11206,10 +11206,10 @@ figcaption {
 }
 
 @media (max-width: 768px) {
-
-  /* 'md' breakpoint is typically 768px */
   .nav-css-primary {
-    height: fit-content !important;
+    min-height: -webkit-fit-content !important;
+    min-height: fit-content !important;
+    height: auto !important;
     padding-bottom: 0 !important;
   }
 }
