@@ -5486,7 +5486,7 @@ figcaption {
 }
 
 .map_feed-item-background.is-current {
-  background-color: #193f32;
+  background-color: #05162B;
 }
 
 .map_feed-state-name {
@@ -5668,7 +5668,6 @@ figcaption {
   justify-content: flex-end;
   width: 100%;
   height: 100%;
-  padding: 3rem 0px;
   display: flex;
   position: absolute;
   overflow: hidden;
@@ -5680,7 +5679,6 @@ figcaption {
   justify-content: center;
   width: 30%;
   height: 100%;
-
   display: flex;
   position: relative;
   overflow: hidden;
@@ -5735,7 +5733,7 @@ figcaption {
   grid-auto-columns: 1fr;
   justify-content: space-between;
   width: 100%;
-  margin-top: 4rem;
+  margin-top: 6rem;
   padding-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -5758,7 +5756,6 @@ figcaption {
   object-fit: cover;
   width: 100%;
   max-width: none;
-  border-radius: 10px;
   height: 100%;
 }
 
@@ -5912,7 +5909,7 @@ figcaption {
 }
 
 .form_title-text {
-  color: #193f32;
+  color: #05162B;
   max-width: 15.8rem;
   line-height: 1.25;
 }
@@ -5946,6 +5943,10 @@ figcaption {
   line-height: 1.25;
 }
 
+.form_bottom {
+  justify-content: space-between;
+  display: flex;
+}
 
 .form_number-wrapper {
   grid-column-gap: .25rem;
@@ -5973,7 +5974,7 @@ figcaption {
 }
 
 .form_number {
-  color: #193f32;
+  color: #05162B;
   font-weight: 600;
 }
 
@@ -5995,10 +5996,11 @@ figcaption {
 .form_submit-lottie {
   z-index: 1;
   pointer-events: none;
-  width: 1.6rem;
+  width: 1.2rem;
   margin-left: -.35rem;
-  padding-top: .45rem;
+  padding-top: 0rem;
 }
+
 
 .contact_form-block {
   min-width: 30rem;
@@ -6009,21 +6011,442 @@ figcaption {
 
 .form_checkbox-field {
   pointer-events: none;
-  border: 1px solid #2d4f44;
   border-radius: .75rem;
   justify-content: flex-start;
-  align-items: center;
   width: 18rem;
   height: 3.5rem;
   margin-bottom: 0;
-  padding-left: 1.25rem;
-  padding-right: 2rem;
+  flex-direction: row;
+  color: #63637E;
   display: flex;
   overflow: hidden;
+ align-items:center;
+  gap:10px;
+  
+    font-size:.9rem
+}
+                      .cyber-checkbox {
+  --checkbox-size: 24px;
+  --checkbox-color: #47475E;
+  --checkbox-check-color: #ffffff;
+  --checkbox-hover-color: #47475E;
+  --checkbox-spark-offset: -20px;
+  margin-left: -1rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  
 }
 
+.cyber-checkbox input {
+  display: none;
+
+}
+
+.cyber-checkbox__mark {
+  position: relative;
+  display: inline-block;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+}
+
+.cyber-checkbox__box {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--checkbox-color);
+  border-radius: 4px;
+  background: transparent;
+  transition: all 0.2s ease;
+
+}
+
+.cyber-checkbox__check {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  stroke: var(--checkbox-check-color);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+  
+}
+
+.cyber-checkbox__effects {
+  position: absolute;
+  inset: var(--checkbox-spark-offset);
+  pointer-events: none;
+}
+
+.cyber-checkbox__spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  background: var(--checkbox-color);
+  border-radius: 50%;
+  opacity: 0;
+  transform-origin: center center;
+}
+
+/* Hover */
+.cyber-checkbox:hover .cyber-checkbox__box {
+  border-color: var(--checkbox-hover-color);
+  box-shadow: 0 0 0 2px rgba(92, 103, 255, 0.1);
+}
+
+/* Checked */
+.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__box {
+  background: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+}
+
+.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__check {
+  transform: scale(1);
+}
+
+/* Spark Animation */
+.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__spark {
+  animation: spark 0.4s ease-out;
+}
+
+.cyber-checkbox__spark:nth-child(1) {
+  transform: rotate(0deg) translateX(var(--checkbox-spark-offset));
+}
+.cyber-checkbox__spark:nth-child(2) {
+  transform: rotate(90deg) translateX(var(--checkbox-spark-offset));
+}
+.cyber-checkbox__spark:nth-child(3) {
+  transform: rotate(180deg) translateX(var(--checkbox-spark-offset));
+}
+.cyber-checkbox__spark:nth-child(4) {
+  transform: rotate(270deg) translateX(var(--checkbox-spark-offset));
+}
+
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg) translateX(var(--checkbox-spark-offset));
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) rotate(0deg)
+      translateX(calc(var(--checkbox-spark-offset) * 1.5));
+  }
+}
+
+/* Active */
+.cyber-checkbox:active .cyber-checkbox__box {
+  transform: scale(0.9);
+}
+
+/* Focus */
+.cyber-checkbox input:focus + .cyber-checkbox__mark .cyber-checkbox__box {
+  box-shadow: 0 0 0 4px rgba(92, 103, 255, 0.2);
+}
+
+.cyber-checkbox__particles {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+}
+
+.cyber-checkbox__particles div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--checkbox-color);
+  opacity: 0;
+}
+
+/* Particle animations for check */
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-1 {
+  animation: particle-1 0.4s ease-out forwards;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-2 {
+  animation: particle-2 0.4s ease-out forwards 0.1s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-3 {
+  animation: particle-3 0.4s ease-out forwards 0.15s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-4 {
+  animation: particle-4 0.4s ease-out forwards 0.05s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-5 {
+  animation: particle-5 0.4s ease-out forwards 0.12s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-6 {
+  animation: particle-6 0.4s ease-out forwards 0.08s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-7 {
+  animation: particle-7 0.4s ease-out forwards 0.18s;
+}
+.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-8 {
+  animation: particle-8 0.4s ease-out forwards 0.15s;
+}
+
+/* Particle animations for uncheck */
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-1 {
+  animation: particle-out-1 0.4s ease-out forwards;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-2 {
+  animation: particle-out-2 0.4s ease-out forwards 0.1s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-3 {
+  animation: particle-out-3 0.4s ease-out forwards 0.15s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-4 {
+  animation: particle-out-4 0.4s ease-out forwards 0.05s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-5 {
+  animation: particle-out-5 0.4s ease-out forwards 0.12s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-6 {
+  animation: particle-out-6 0.4s ease-out forwards 0.08s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-7 {
+  animation: particle-out-7 0.4s ease-out forwards 0.18s;
+}
+.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-8 {
+  animation: particle-out-8 0.4s ease-out forwards 0.15s;
+}
+
+/* Particle keyframes for check */
+@keyframes particle-1 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-20px, -20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-2 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, -20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-3 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, 20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-4 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-5 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-30px, 0px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-6 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(30px, 0px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-7 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, -30px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-8 {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 30px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Particle keyframes for uncheck */
+@keyframes particle-out-1 {
+  0% {
+    transform: translate(-20px, -20px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-2 {
+  0% {
+    transform: translate(20px, -20px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-3 {
+  0% {
+    transform: translate(20px, 20px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-4 {
+  0% {
+    transform: translate(-20px, 20px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-5 {
+  0% {
+    transform: translate(-30px, 0px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-6 {
+  0% {
+    transform: translate(30px, 0px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-7 {
+  0% {
+    transform: translate(0px, -30px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-out-8 {
+  0% {
+    transform: translate(0px, 30px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
 .form_title {
-  background-color: #e5e4e4;
+  background-color: #F4F4F9;
   border-radius: .5rem;
   flex-direction: column;
   justify-content: space-between;
@@ -6062,7 +6485,7 @@ figcaption {
 }
 
 .section_contact {
-  background-color: #193f32;
+  background-color: #05162B;
   width: 100dvw;
   height: 100svh;
   padding-left: 1.375rem;
@@ -6074,7 +6497,7 @@ figcaption {
 .form_submit-button {
   pointer-events: none;
   color: #e5e4e400;
-  background-color: #54776b;
+  background-color: #E1E1E9;
   border-radius: 999rem;
   width: 100%;
   height: 3.5rem;
@@ -6085,7 +6508,7 @@ figcaption {
 }
 
 .form_title-heading {
-  color: #193f32;
+  color: #05162B;
 }
 
 .checkbox {
@@ -6131,71 +6554,49 @@ figcaption {
 }
 
 .form_field {
-  color: #e5e4e4;
-  background-color: #23473b;
-  border: 1px solid #23473b;
+  color: #05162B;
+  background-color: #E1E1E9;
+  border: 1px solid #E1E1E9;
   border-radius: .5rem;
   width: 100%;
   height: 3.5rem;
   margin-bottom: 0;
   padding: 0 2rem 0 1.5rem;
-  transition: border-color .2s;
+  transition: background-color 0.3s ease, border-color 0.2s ease; /* updated */
 }
 
 .form_field:active {
-  color: #e5e4e4;
+  color: #05162B;
 }
 
 .form_field:focus {
-  background-color: #2d4f44;
-  border-color: #86c2ad;
+  background-color: #F4F4F9;
+  border-color: #C2C2D1;
 }
 
 .form_field::placeholder {
-  color: #899994;
+  color: #9191A8;
 }
 
 .form_field.is-name:focus {
-  border-color: #86c2ad;
+  border-color: #C2C2D1;
 }
 
-/* Add this to your existing CSS */
 .form_field.is-input {
-  color: #e5e4e4;
-  background-color: #23473b;
-  border: 1px solid #23473b;
-  border-radius: 0.5rem;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 0;
-  padding: 0 2rem 0 1.5rem;
-  resize: vertical;
-  display: none;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.5;
-  transition: none;
-  /* Transitions are applied via JavaScript */
-}
-
-.form_field.is-input:focus {
-  background-color: #2d4f44;
-  border-color: #86c2ad;
-  outline: none;
-}
-
-.form_field.is-input::placeholder {
-  color: #899994;
+  height: 12rem;
+  transition: padding .5s cubic-bezier(.165, .84, .44, 1), border-color .2s;
 }
 
 .form_submit-button-wrapper {
-  opacity: .2;
+  opacity: .9;
   outline-offset: 0px;
   border-radius: 9999rem;
   outline: 1.5px solid #e5e4e400;
   justify-content: space-between;
   align-items: center;
-  width: 3.5rem;
+  width: 11rem;
   height: 3.5rem;
   padding-left: 1.5rem;
   padding-right: 1rem;
@@ -6209,7 +6610,7 @@ figcaption {
   opacity: 1;
   outline-offset: 0px;
   border-radius: 99rem;
-  outline: 1.5px solid #86c2ad;
+  outline: 1.5px solid #C2C2D1;
 }
 
 .form_submit-button-click2 {
@@ -6236,7 +6637,7 @@ figcaption {
 }
 
 .contact_form {
-  color: #e5e4e4;
+  color: #05162B;
   position: relative;
 }
 
@@ -6249,7 +6650,7 @@ figcaption {
 .form_submit-text {
   z-index: 1;
   pointer-events: none;
-  color: #fff;
+  color: #1A1A24;
   font-weight: 500;
   display: block;
 }
@@ -11205,11 +11606,15 @@ figcaption {
   }
 }
 
+.form_submit-lottie svg path {
+  fill: #000 !important; /* black */
+}
+
 @media (max-width: 768px) {
   .nav-css-primary {
     min-height: -webkit-fit-content !important;
     min-height: fit-content !important;
-    height: auto !important;
+    height: auto !important; /* Let height be determined by content */
     padding-bottom: 0 !important;
   }
 }
