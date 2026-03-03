@@ -403,6 +403,12 @@
   .min-h-130 {
     min-height: calc(var(--spacing) * 130);
   }
+  .w-0 {
+    width: calc(var(--spacing) * 0);
+  }
+  .w-0\! {
+    width: calc(var(--spacing) * 0) !important;
+  }
   .w-2 {
     width: calc(var(--spacing) * 2);
   }
