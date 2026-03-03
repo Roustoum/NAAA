@@ -5758,7 +5758,7 @@ figcaption {
   object-fit: cover;
   width: 100%;
   max-width: none;
-    border-radius: 10px;
+  border-radius: 10px;
   height: 100%;
 }
 
@@ -6174,7 +6174,8 @@ figcaption {
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.5;
-  transition: none; /* Transitions are applied via JavaScript */
+  transition: none;
+  /* Transitions are applied via JavaScript */
 }
 
 .form_field.is-input:focus {
@@ -11201,5 +11202,14 @@ figcaption {
   100% {
     transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* 'md' breakpoint is typically 768px */
+  .nav-css-primary {
+    height: fit-content !important;
+    padding-bottom: 0 !important;
   }
 }

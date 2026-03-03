@@ -917,6 +917,11 @@
       display: flex;
     }
   }
+  .max-md\:h-\[85dvh\]\! {
+    @media (width < 48rem) {
+      height: 85dvh !important;
+    }
+  }
   .max-md\:h-fit\! {
     @media (width < 48rem) {
       height: fit-content !important;
