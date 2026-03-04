@@ -394,6 +394,9 @@
   .h-full {
     height: 100%;
   }
+  .min-h-12 {
+    min-height: calc(var(--spacing) * 12);
+  }
   .min-h-110 {
     min-height: calc(var(--spacing) * 110);
   }
@@ -465,6 +468,9 @@
   }
   .max-w-\[35\.1875em\] {
     max-width: 35.1875em;
+  }
+  .min-w-12 {
+    min-width: calc(var(--spacing) * 12);
   }
   .flex-shrink {
     flex-shrink: 1;
