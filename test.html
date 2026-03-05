@@ -1,517 +1,121 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NAAAA • Adhésion simple & directe</title>
-  <!-- Google Font & simple icons (Font Awesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>GSAP Progress Bar</title>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .grid-new {
+      width: 97%;
+      padding-top: 30px;
     }
 
-    body {
-      background: #f0f6fa;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      padding: 2rem 1.5rem;
-      display: flex;
-      justify-content: center;
-      line-height: 1.5;
+    /* PROGRESS */
+
+    .progress {
+      background: #F4F4F9;
+      height: 6px;
+      border-radius: 10px;
+      position: relative;
+      overflow: visible;
     }
 
-    .form-card {
-      max-width: 860px;
-      width: 100%;
-      background: white;
-      border-radius: 28px;
-      box-shadow: 0 20px 40px -12px rgba(0, 45, 60, 0.25);
-      padding: 2.2rem 2.2rem;
-      border: 1px solid #d5e6f0;
+    /* BAR */
+
+    .progress__bar {
+      width: 0%;
+      height: 100%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      background-image: linear-gradient(to right, #D2AF38, #D2AF38, #D2AF38);
+      position: relative;
     }
 
-    /* header épuré */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
+    /* PERCENTAGE */
 
-    .header-icon {
-      background: #e67e22;
-      color: white;
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-    }
-
-    .header-text h2 {
-      font-weight: 700;
-      color: #14313e;
-      letter-spacing: -0.02em;
-    }
-
-    .header-text span {
-      color: #527a8c;
-      font-size: 0.9rem;
-      background: #e8f0f6;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-    }
-
-    /* stepper minimal */
-    .steps {
-      display: flex;
-      gap: 0.2rem 1.8rem;
-      flex-wrap: wrap;
-      border-bottom: 2px solid #cde0ea;
-      padding-bottom: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .step {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #8fafc0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .step.active {
-      color: #1a3b47;
-    }
-
-    .step i {
-      background: #e2eef5;
-      padding: 4px;
-      border-radius: 50%;
-      width: 24px;
-      text-align: center;
-      color: #1e4e62;
-    }
-
-    .step.active i {
-      background: #e67e22;
-      color: white;
-    }
-
-    /* titres de section */
-    .section-title {
-      font-weight: 700;
-      color: #14313e;
-      margin: 1.8rem 0 1.2rem 0;
-      font-size: 1.2rem;
-      border-left: 5px solid #e67e22;
-      padding-left: 1rem;
-    }
-
-    .section-title:first-of-type {
-      margin-top: 0.5rem;
-    }
-
-    /* grille 2 colonnes */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .field label {
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #1d4c5e;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .field label i {
-      color: #e67e22;
-      width: 18px;
-    }
-
-    input,
-    select,
-    textarea {
-      background: #f9fdfe;
-      border: 1.5px solid #d0e2ed;
-      border-radius: 18px;
-      padding: 0.7rem 1.2rem;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.15s;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #e67e22;
-      background: white;
-      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
-    }
-
-    /* checkbox group */
-    .check-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem 2.2rem;
-      background: #f0f7fc;
-      padding: 1.2rem 1.8rem;
-      border-radius: 30px;
-      margin: 1rem 0;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .check-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: #e67e22;
-    }
-
-    /* bloc entrepreneur (conditionnel) */
-    .ent-bloc {
-      background: #ecf3f8;
-      border-radius: 28px;
-      padding: 1.8rem 2rem;
-      margin: 2rem 0 1.2rem;
-      border: 2px solid #cde0ea;
-    }
-
-    .ent-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-
-    .ent-badge {
-      background: #e67e22;
-      color: white;
-      border-radius: 40px;
-      padding: 0.3rem 1.2rem;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    .radio-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem 2.5rem;
-    }
-
-    .radio-row label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .business-fields {
-      display: none;
-      margin-top: 2rem;
-    }
-
-    .business-fields.visible {
-      display: block;
-    }
-
-    .subtitle {
-      font-weight: 700;
-      color: #003349;
-      margin: 1.2rem 0 0.8rem;
-    }
-
-    /* séparateur */
-    hr {
-      border: none;
-      border-top: 2px solid #cde0ea;
-      margin: 1.5rem 0;
-    }
-
-    .bio-counter {
-      font-size: 0.8rem;
-      text-align: right;
-      color: #1f6077;
-    }
-
-    /* ligne d'action finale */
-    .footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 2.2rem;
-    }
-
-    .visu-control {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #eaf2f7;
-      padding: 0.3rem 1rem 0.3rem 1.5rem;
-      border-radius: 40px;
-    }
-
-    .visu-control select {
-      background: white;
-      border: 1px solid #bad0dd;
-      border-radius: 40px;
-      padding: 0.3rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .btn-primary {
-      background: #1e3c4a;
-      color: white;
-      border: none;
-      padding: 0.9rem 2.5rem;
-      border-radius: 40px;
-      font-weight: 600;
+    .progress__percent {
+      position: absolute;
+      top: -28px;
+      right: -10px;
       font-size: 1rem;
-      cursor: pointer;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid #2b6075;
+      font-weight: 600;
+      color: #D2AF38;
     }
-
-    .btn-primary:hover {
-      background: #12313e;
-      transform: scale(1.02);
-    }
-
-    .note {
-      color: #2d657b;
-      font-size: 0.8rem;
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* suppression de tout ce qui touchait au password */
   </style>
 </head>
 
 <body>
-  <div class="form-card">
-    <!-- Header -->
-    <div class="header">
-      <div class="header-icon"><i class="fas fa-map-marked-alt"></i></div>
-      <div class="header-text">
-        <h2>NAAAA · Réseau diaspora</h2>
-        <span>Algérie · Québec · Monde</span>
+
+  <div class="">
+
+    <div class="progress">
+
+      <div class="progress__bar">
+
+        <div class="progress__percent">0%</div>
+
       </div>
+
     </div>
 
-    <!-- Étapes visuelles (pas de mot de passe) -->
-    <div class="steps">
-      <div class="step active"><i class="fas fa-id-card"></i> 1. Identité</div>
-      <div class="step"><i class="fas fa-briefcase"></i> 2. Profil pro</div>
-      <div class="step"><i class="fas fa-rocket"></i> 2.5 Entrepreneur</div>
-      <div class="step"><i class="fas fa-handshake"></i> 3. Engagement</div>
-    </div>
-
-    <!-- Formulaire (sans aucun champ password) -->
-    <form onsubmit="event.preventDefault(); alert('✅ Données prêtes – inscription simulée')">
-
-      <!-- ÉTAPE 1 : IDENTITÉ (sans mot de passe) -->
-      <div class="section-title"><i class="fas fa-user-circle" style="margin-right: 8px;"></i> Identité & localisation
-      </div>
-      <div class="grid-2">
-        <div class="field"><label><i class="fas fa-user"></i> Nom complet</label><input type="text"
-            placeholder="Lyès Messaoudi"></div>
-        <div class="field"><label><i class="fas fa-envelope"></i> Email professionnel</label><input type="email"
-            placeholder="lyes.messaoudi@exemple.com"></div>
-        <div class="field"><label><i class="fas fa-map-marker-alt"></i> Localisation *</label><input type="text"
-            placeholder="Montréal, QC, Canada"></div>
-        <div class="field"><label><i class="fab fa-linkedin"></i> LinkedIn (URL)</label><input type="url"
-            placeholder="linkedin.com/in/lyes"></div>
-      </div>
-
-      <hr>
-
-      <!-- ÉTAPE 2 : DNA PROFESSIONNEL -->
-      <div class="section-title"><i class="fas fa-microchip"></i> DNA professionnel</div>
-      <div class="grid-2">
-        <div class="field"><label>Secteur principal</label>
-          <select>
-            <option>AI & Tech</option>
-            <option>Healthcare</option>
-            <option>Énergie</option>
-            <option>Finance</option>
-            <option>Éducation</option>
-            <option>Arts</option>
-          </select>
-        </div>
-        <div class="field"><label>Rôle / titre</label><input placeholder="Senior Research Scientist, CEO..."></div>
-        <div class="field"><label>Organisation</label><input placeholder="Nom entreprise / université"></div>
-        <div class="field"><label>Expérience</label>
-          <select>
-            <option>0-5 ans</option>
-            <option>5-10 ans</option>
-            <option>10-20 ans</option>
-            <option>20+ ans</option>
-          </select>
-        </div>
-      </div>
-      <div class="grid-2" style="margin-top:0.2rem;">
-        <div class="field"><label>Compétences (tags)</label>
-          <select multiple size="2" style="min-height: 60px;">
-            <option>#MachineLearning</option>
-            <option>#ProjectManagement</option>
-            <option>#SurgicalRobotics</option>
-            <option>#Pédagogie</option>
-          </select>
-          <span style="font-size:0.7rem; color:#3f687b;">maintenez Ctrl (Cmd) pour choix multiples</span>
-        </div>
-        <div class="field"><label>Diplôme / Institution</label><input placeholder="Doctorat, USTHB / Polytechnique">
-        </div>
-      </div>
-
-      <!-- ÉTAPE 2.5 – COUCHE ENTREPRENEUR (conditionnelle) -->
-      <div class="ent-bloc">
-        <div class="ent-header">
-          <span class="ent-badge"><i class="fas fa-briefcase"></i> 2.5 Entrepreneur</span>
-          <span style="font-weight:500;">Dirigez-vous une entreprise ?</span>
-        </div>
-        <div class="radio-row">
-          <label><input type="radio" name="businessType" value="no" checked onchange="toggleEntreFields()"> <i
-              class="fas fa-user-tie"></i> Non, professionnel</label>
-          <label><input type="radio" name="businessType" value="startup" onchange="toggleEntreFields()"> <i
-              class="fas fa-rocket"></i> Oui, startup</label>
-          <label><input type="radio" name="businessType" value="consulting" onchange="toggleEntreFields()"> <i
-              class="fas fa-chart-line"></i> Oui, consulting</label>
-        </div>
-
-        <!-- Champs entreprise (affichage conditionnel) -->
-        <div class="business-fields" id="entrepriseFields">
-          <div class="subtitle"><i class="fas fa-building"></i> Détails de l'entreprise</div>
-          <div class="grid-2">
-            <div class="field"><label>Nom de l'entité</label><input placeholder="Atlas Tech Solutions"></div>
-            <div class="field"><label>Structure juridique</label><select>
-                <option>Inc./SPA</option>
-                <option>LLC/SARL</option>
-                <option>Auto-entreprise</option>
-              </select></div>
-            <div class="field"><label>Startup stage / niche</label><input
-                placeholder="Seed, Ideation, ou niche (ex: stratégie)"></div>
-            <div class="field"><label>Site web</label><input type="url" placeholder="https://exemple.com"></div>
-            <div class="field"><label>Siège social</label><input placeholder="Alger / Paris / Montréal"></div>
-          </div>
-
-          <!-- B2B Exchange (offres) -->
-          <div style="background: white; border-radius: 24px; padding: 1.2rem; margin-top: 1.5rem;">
-            <div style="font-weight:600; margin-bottom: 1rem;"><i class="fas fa-handshake" style="color:#e67e22;"></i>
-              Offres d'échange (B2B)</div>
-            <div class="check-group" style="background: transparent; padding:0;">
-              <label class="check-item"><input type="checkbox"> Votre entreprise recrute</label>
-              <label class="check-item"><input type="checkbox"> Offre pro-bono / remise membre</label>
-              <label class="check-item"><input type="checkbox"> Recherche partenaires / co-fondateurs</label>
-            </div>
-            <textarea rows="2"
-              placeholder="Décrivez votre offre (ex: 1h de conseil gratuit pour les membres NAAA)"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <hr>
-
-      <!-- ÉTAPE 3 : ENGAGEMENT -->
-      <div class="section-title"><i class="fas fa-exchange-alt"></i> Engagement dans le réseau</div>
-      <div class="check-group">
-        <label class="check-item"><input type="checkbox"> Mentorat (jeunes pros)</label>
-        <label class="check-item"><input type="checkbox"> Collaboration R&D / business</label>
-        <label class="check-item"><input type="checkbox"> Conférencier webinaires NAAA</label>
-        <label class="check-item"><input type="checkbox"> Networking entre pairs</label>
-      </div>
-
-      <div class="field" style="margin: 1.5rem 0;">
-        <label>Courte bio (500 caractères maximum) – apport à la communauté</label>
-        <textarea id="bioField" rows="3" maxlength="500" oninput="updateCounter()"
-          placeholder="Parcours, expertise, ce que vous souhaitez partager avec la diaspora algérienne..."></textarea>
-        <div class="bio-counter"><span id="charCount">0</span>/500</div>
-      </div>
-
-      <!-- Ligne finale : visibilité + bouton -->
-      <div class="footer-row">
-        <div class="visu-control">
-          <i class="fas fa-eye"></i> Visibilité
-          <select>
-            <option>Public</option>
-            <option>Membres seulement</option>
-            <option>Masqué</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-primary"><i class="fas fa-check-circle"></i> Enregistrer mon adhésion</button>
-      </div>
-      <div class="note">
-        <i class="fas fa-map-marked-alt"></i> Toutes les informations alimentent la carte de la diaspora.
-      </div>
-    </form>
   </div>
 
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
   <script>
-    // === Fonction pour afficher/masquer les champs entreprise ===
-    function toggleEntreFields() {
-      const radios = document.getElementsByName('businessType');
-      const businessDiv = document.getElementById('entrepriseFields');
-      let show = false;
-      for (let r of radios) {
-        if (r.checked && r.value !== 'no') {
-          show = true;
-          break;
-        }
-      }
-      if (show) {
-        businessDiv.classList.add('visible');
-      } else {
-        businessDiv.classList.remove('visible');
-      }
-    }
 
-    // === Compteur de bio ===
-    function updateCounter() {
-      const bio = document.getElementById('bioField');
-      const count = document.getElementById('charCount');
-      count.innerText = bio.value.length;
-    }
+    const progressValue = 5;
+    const duration = 2;
 
-    // === Initialisation ===
-    window.addEventListener('load', function () {
-      toggleEntreFields();   // s'assure que les champs sont cachés si "non" coché
-      updateCounter();       // met à jour le compteur bio (0 par défaut)
+    const percent = document.querySelector(".progress__percent");
+    const bar = document.querySelector(".progress__bar");
+
+    let radiusTriggered = false;
+
+    /* animate bar */
+
+    gsap.to(bar, {
+      width: progressValue + "%",
+      duration: duration,
+      ease: "power3.out"
     });
+
+    /* animate number */
+
+    gsap.to({ value: 0 }, {
+      value: progressValue,
+      duration: duration,
+      ease: "power3.out",
+      onUpdate: function () {
+
+        let current = Math.round(this.targets()[0].value);
+        percent.textContent = current + "%";
+
+        /* trigger radius at 97% */
+
+        if (current >= 97 && !radiusTriggered) {
+
+          radiusTriggered = true;
+
+          gsap.to(bar, {
+            borderTopRightRadius: 10,
+            borderBottomRightRadius: 10,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+
+        }
+
+      }
+    });
+
   </script>
 
-  <!-- Aucun champ mot de passe n'est présent -->
 </body>
 
 </html>

@@ -6020,12 +6020,13 @@ figcaption {
   color: #63637E;
   display: flex;
   overflow: hidden;
- align-items:center;
-  gap:10px;
-  
-    font-size:.9rem
+  align-items: center;
+  gap: 10px;
+
+  font-size: .9rem
 }
-                      .cyber-checkbox {
+
+.cyber-checkbox {
   --checkbox-size: 24px;
   --checkbox-color: #47475E;
   --checkbox-check-color: #ffffff;
@@ -6035,7 +6036,7 @@ figcaption {
   position: relative;
   cursor: pointer;
   user-select: none;
-  
+
 }
 
 .cyber-checkbox input {
@@ -6071,7 +6072,7 @@ figcaption {
   fill: none;
   transform: scale(0);
   transition: transform 0.2s ease;
-  
+
 }
 
 .cyber-checkbox__effects {
@@ -6099,29 +6100,32 @@ figcaption {
 }
 
 /* Checked */
-.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__box {
+.cyber-checkbox input:checked+.cyber-checkbox__mark .cyber-checkbox__box {
   background: var(--checkbox-color);
   border-color: var(--checkbox-color);
 }
 
-.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__check {
+.cyber-checkbox input:checked+.cyber-checkbox__mark .cyber-checkbox__check {
   transform: scale(1);
 }
 
 /* Spark Animation */
-.cyber-checkbox input:checked + .cyber-checkbox__mark .cyber-checkbox__spark {
+.cyber-checkbox input:checked+.cyber-checkbox__mark .cyber-checkbox__spark {
   animation: spark 0.4s ease-out;
 }
 
 .cyber-checkbox__spark:nth-child(1) {
   transform: rotate(0deg) translateX(var(--checkbox-spark-offset));
 }
+
 .cyber-checkbox__spark:nth-child(2) {
   transform: rotate(90deg) translateX(var(--checkbox-spark-offset));
 }
+
 .cyber-checkbox__spark:nth-child(3) {
   transform: rotate(180deg) translateX(var(--checkbox-spark-offset));
 }
+
 .cyber-checkbox__spark:nth-child(4) {
   transform: rotate(270deg) translateX(var(--checkbox-spark-offset));
 }
@@ -6131,13 +6135,14 @@ figcaption {
     opacity: 0;
     transform: scale(0) rotate(0deg) translateX(var(--checkbox-spark-offset));
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
-    transform: scale(1) rotate(0deg)
-      translateX(calc(var(--checkbox-spark-offset) * 1.5));
+    transform: scale(1) rotate(0deg) translateX(calc(var(--checkbox-spark-offset) * 1.5));
   }
 }
 
@@ -6147,7 +6152,7 @@ figcaption {
 }
 
 /* Focus */
-.cyber-checkbox input:focus + .cyber-checkbox__mark .cyber-checkbox__box {
+.cyber-checkbox input:focus+.cyber-checkbox__mark .cyber-checkbox__box {
   box-shadow: 0 0 0 4px rgba(92, 103, 255, 0.2);
 }
 
@@ -6169,54 +6174,68 @@ figcaption {
 }
 
 /* Particle animations for check */
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-1 {
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-1 {
   animation: particle-1 0.4s ease-out forwards;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-2 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-2 {
   animation: particle-2 0.4s ease-out forwards 0.1s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-3 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-3 {
   animation: particle-3 0.4s ease-out forwards 0.15s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-4 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-4 {
   animation: particle-4 0.4s ease-out forwards 0.05s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-5 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-5 {
   animation: particle-5 0.4s ease-out forwards 0.12s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-6 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-6 {
   animation: particle-6 0.4s ease-out forwards 0.08s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-7 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-7 {
   animation: particle-7 0.4s ease-out forwards 0.18s;
 }
-.cyber-checkbox input:checked + .cyber-checkbox__mark .particle-8 {
+
+.cyber-checkbox input:checked+.cyber-checkbox__mark .particle-8 {
   animation: particle-8 0.4s ease-out forwards 0.15s;
 }
 
 /* Particle animations for uncheck */
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-1 {
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-1 {
   animation: particle-out-1 0.4s ease-out forwards;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-2 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-2 {
   animation: particle-out-2 0.4s ease-out forwards 0.1s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-3 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-3 {
   animation: particle-out-3 0.4s ease-out forwards 0.15s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-4 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-4 {
   animation: particle-out-4 0.4s ease-out forwards 0.05s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-5 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-5 {
   animation: particle-out-5 0.4s ease-out forwards 0.12s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-6 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-6 {
   animation: particle-out-6 0.4s ease-out forwards 0.08s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-7 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-7 {
   animation: particle-out-7 0.4s ease-out forwards 0.18s;
 }
-.cyber-checkbox input:not(:checked) + .cyber-checkbox__mark .particle-8 {
+
+.cyber-checkbox input:not(:checked)+.cyber-checkbox__mark .particle-8 {
   animation: particle-out-8 0.4s ease-out forwards 0.15s;
 }
 
@@ -6226,9 +6245,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(-20px, -20px) scale(1);
     opacity: 0;
@@ -6240,9 +6261,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(20px, -20px) scale(1);
     opacity: 0;
@@ -6254,9 +6277,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(20px, 20px) scale(1);
     opacity: 0;
@@ -6268,9 +6293,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(-20px, 20px) scale(1);
     opacity: 0;
@@ -6282,9 +6309,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(-30px, 0px) scale(1);
     opacity: 0;
@@ -6296,9 +6325,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(30px, 0px) scale(1);
     opacity: 0;
@@ -6310,9 +6341,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0px, -30px) scale(1);
     opacity: 0;
@@ -6324,9 +6357,11 @@ figcaption {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0px, 30px) scale(1);
     opacity: 0;
@@ -6339,9 +6374,11 @@ figcaption {
     transform: translate(-20px, -20px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6353,9 +6390,11 @@ figcaption {
     transform: translate(20px, -20px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6367,9 +6406,11 @@ figcaption {
     transform: translate(20px, 20px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6381,9 +6422,11 @@ figcaption {
     transform: translate(-20px, 20px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6395,9 +6438,11 @@ figcaption {
     transform: translate(-30px, 0px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6409,9 +6454,11 @@ figcaption {
     transform: translate(30px, 0px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6423,9 +6470,11 @@ figcaption {
     transform: translate(0px, -30px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
@@ -6437,14 +6486,17 @@ figcaption {
     transform: translate(0px, 30px) scale(1);
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     transform: translate(0, 0) scale(0);
     opacity: 0;
   }
 }
+
 .form_title {
   background-color: #F4F4F9;
   border-radius: .5rem;
@@ -6562,7 +6614,8 @@ figcaption {
   height: 3.5rem;
   margin-bottom: 0;
   padding: 0 2rem 0 1.5rem;
-  transition: background-color 0.3s ease, border-color 0.2s ease; /* updated */
+  transition: background-color 0.3s ease, border-color 0.2s ease;
+  /* updated */
 }
 
 .form_field:active {
@@ -11607,14 +11660,50 @@ figcaption {
 }
 
 .form_submit-lottie svg path {
-  fill: #000 !important; /* black */
+  fill: #000 !important;
+  /* black */
 }
 
 @media (max-width: 768px) {
   .nav-css-primary {
     min-height: -webkit-fit-content !important;
     min-height: fit-content !important;
-    height: auto !important; /* Let height be determined by content */
+    height: auto !important;
+    /* Let height be determined by content */
     padding-bottom: 0 !important;
   }
+}
+
+/* PROGRESS */
+
+.progress {
+  background: #F4F4F9;
+  height: 6px;
+  border-radius: 10px;
+  position: relative;
+  overflow: visible;
+}
+
+/* BAR */
+
+.progress__bar {
+  width: 0%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-image: linear-gradient(to right, #D2AF38, #D2AF38, #D2AF38);
+  position: relative;
+}
+
+/* PERCENTAGE */
+
+.progress__percent {
+  position: absolute;
+  top: -28px;
+  right: -10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #D2AF38;
 }
