@@ -1,0 +1,370 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <div class="w-[320px] rounded-3xl bg-white shadow-xl p-6">
+        <ul class="relative space-y-6">
+
+            <!-- Step 1 -->
+            <li step="1" isactive="false" isnext="false" class="flex items-start rounded-xl border gap-4 p-3 -ml-3">
+                <span
+                    class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-500 bg-white z-100 outline-4 outline-white">
+                    <span class="h-2.5 w-2.5 rounded-full bg-indigo-500"></span>
+                </span>
+                <div>
+                    <p class="font-semibold text-gray-900">Step One</p>
+                    <p class="text-sm text-gray-500">This is the first step.</p>
+                </div>
+            </li>
+
+            <!-- Step 2 (active) -->
+            <li step="2" isactive="true" isnext="false"
+                class="flex items-start gap-4 rounded-xl bg-gray-50 border border-indigo-200 p-3 -ml-3">
+                <span
+                    class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 z-100 outline-4 outline-white border-2 border-transparent">
+                    <span class="h-2.5 w-2.5 rounded-full bg-white"></span>
+                </span>
+                <div>
+                    <p class="font-semibold text-gray-900">Step Two</p>
+                    <p class="text-sm text-gray-500">This is the second step.</p>
+                </div>
+            </li>
+
+            <!-- Step 3 -->
+            <li step="3" isactive="false" isnext="true" class="flex items-start rounded-xl border gap-4 p-3 -ml-3">
+                <span
+                    class="z-100 flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-500 bg-white relative outline-4 outline-indigo-200">
+                    <span class="h-2.5 w-2.5 rounded-full bg-indigo-500"></span>
+                </span>
+                <div>
+                    <p class="font-semibold text-gray-900">Step Three</p>
+                    <p class="text-sm text-gray-500">This is the third step.</p>
+                </div>
+            </li>
+
+            <!-- Step 4 -->
+            <li step="4" isactive="false" isnext="false" class="flex items-start rounded-xl border gap-4 p-3 -ml-3">
+                <span
+                    class="z-100 flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-200 bg-white relative outline-4 outline-transparent">
+                    <span class="h-2.5 w-2.5 rounded-full bg-white"></span>
+                </span>
+                <div>
+                    <p class="font-semibold text-gray-700">Step Four</p>
+                    <p class="text-sm text-gray-400">This is the fourth step.</p>
+                </div>
+            </li>
+
+            <!-- Step 5 -->
+            <li step="5" isactive="false" isnext="false" class="flex items-start rounded-xl border gap-4 p-3 -ml-3">
+                <span
+                    class="z-100 flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-200 bg-white relative outline-4 outline-transparent">
+                    <span class="h-2.5 w-2.5 rounded-full bg-white"></span>
+                </span>
+                <div>
+                    <p class="font-semibold text-gray-600">Step Five</p>
+                    <p class="text-sm text-gray-300">This is the fifth step.</p>
+                </div>
+            </li>
+            <!-- Ligne verticale -->
+            <span class="absolute left-4 top-0 h-full w-px bg-gray-200 z-1"></span>
+            <span class="absolute left-4 top-0 h-[50%] w-[2px] -translate-x-1/2 bg-indigo-500 z-1"></span>
+
+        </ul>
+    </div>
+    <div class="flex gap-4 mt-6">
+        <button id="prev" class="px-4 py-2 rounded-lg bg-gray-200">Previous</button>
+        <button id="next" class="px-4 py-2 rounded-lg bg-indigo-500 text-white">Next</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        const steps = Array.from(document.querySelectorAll("li[step]"));
+        const progressLine = document.querySelector(".bg-indigo-500.h-\\[50\\%\\]");
+
+        // UNIQUEMENT la ligne en arrière-plan
+        gsap.set(progressLine, { zIndex: 0 });
+
+        let currentStep = 2; // step de départ
+
+        function animateCircleIn(container, isFirstRun = false) {
+            const circle = container.querySelector("span");
+            const dot = container.querySelector("span > span");
+
+            // Animation d'entrée : de 0 à taille normale
+            if (isFirstRun) {
+                gsap.fromTo(circle,
+                    {
+                        width: 0,
+                        height: 0,
+                        borderWidth: 0,
+                        outlineWidth: 0,
+                        opacity: 0
+                    },
+                    {
+                        width: 32,
+                        height: 32,
+                        borderWidth: 2,
+                        outlineWidth: 4,
+                        opacity: 1,
+                        duration: 0.6,
+                        ease: "back.out(1.2)",
+                        delay: 0.1
+                    }
+                );
+
+                gsap.fromTo(dot,
+                    {
+                        width: 0,
+                        height: 0,
+                        opacity: 0
+                    },
+                    {
+                        width: 10,
+                        height: 10,
+                        opacity: 1,
+                        duration: 0.4,
+                        ease: "back.out(2)",
+                        delay: 0.3
+                    }
+                );
+            }
+        }
+
+        function updateSteps(isInitial = false) {
+            steps.forEach((stepEl, index) => {
+                const stepNum = index + 1;
+                const circle = stepEl.querySelector("span");
+                const dot = stepEl.querySelector("span > span");
+
+                // UNIQUEMENT les cercles devant
+                gsap.set(circle, { zIndex: 10 });
+
+                // Reset attrs & classes
+                stepEl.setAttribute("isactive", "false");
+                stepEl.setAttribute("isnext", "false");
+                stepEl.classList.remove(
+                    "bg-gray-50",
+                    "border",
+                    "border-indigo-200",
+                );
+
+                // Animation d'entrée pour tous les cercles au chargement
+                if (isInitial) {
+                    animateCircleIn(stepEl, true);
+                }
+
+                // 🔵 STEP PASSÉ
+                if (stepNum < currentStep) {
+                    gsap.to(circle, {
+                        backgroundColor: "#4f46e5",
+                        borderColor: "#4f46e5",
+                        outlineColor: "#ffffff",
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "back.out(1.2)",
+                    });
+
+                    gsap.to(dot, {
+                        backgroundColor: "#ffffff",
+                        scale: 1,
+                        duration: 0.3,
+                    });
+                }
+
+                // 🟣 STEP ACTIF
+                if (stepNum === currentStep) {
+                    stepEl.setAttribute("isactive", "true");
+                    stepEl.classList.add(
+                        "bg-gray-50",
+                        "border",
+                        "border-indigo-200",
+                    );
+
+                    // Animation de pulsation pour le cercle actif
+                    gsap.to(circle, {
+                        scale: 1.1,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        yoyo: true,
+                        repeat: 1
+                    });
+
+                    gsap.fromTo(
+                        circle,
+                        { scale: 0.85 },
+                        {
+                            scale: 1,
+                            backgroundColor: "#4f46e5",
+                            borderColor: "transparent",
+                            outlineColor: "#ffffff",
+                            duration: 0.5,
+                            ease: "back.out(1.7)",
+                        }
+                    );
+
+                    gsap.to(dot, {
+                        backgroundColor: "#ffffff",
+                        scale: 1.2,
+                        duration: 0.3,
+                    });
+                }
+
+                // ⚪ STEP NEXT
+                if (stepNum === currentStep + 1) {
+                    stepEl.setAttribute("isnext", "true");
+
+                    // Animation de rebond pour le prochain step
+                    gsap.fromTo(circle,
+                        { scale: 0.8 },
+                        {
+                            scale: 1,
+                            backgroundColor: "#ffffff",
+                            borderColor: "#4f46e5",
+                            outlineColor: "#c7d2fe",
+                            duration: 0.5,
+                            ease: "back.out(1.7)",
+                        }
+                    );
+
+                    gsap.to(dot, {
+                        backgroundColor: "#4f46e5",
+                        scale: 1,
+                        duration: 0.3,
+                    });
+                }
+
+                // ⚫ STEP FUTUR
+                if (stepNum > currentStep + 1) {
+                    gsap.to(circle, {
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e5e7eb",
+                        outlineColor: "transparent",
+                        scale: 1,
+                        duration: 0.3,
+                    });
+
+                    gsap.to(dot, {
+                        backgroundColor: "#ffffff",
+                        scale: 0,
+                        duration: 0.3,
+                    });
+                }
+            });
+
+            // 📈 LIGNE DE PROGRESSION - reste en arrière-plan
+            const progress = ((currentStep - 1) / (steps.length - 1)) * 100;
+
+            gsap.to(progressLine, {
+                height: `${progress}%`,
+                duration: 0.6,
+                ease: "power2.inOut",
+                zIndex: 0 // Elle reste à 0
+            });
+        }
+
+        // Animation initiale avec effet de déploiement
+        gsap.set(progressLine, { zIndex: 0, height: "25%" }); // Pour step 2
+        steps.forEach(step => {
+            gsap.set(step.querySelector("span"), { zIndex: 10 });
+        });
+
+        // Animation de démarrage - tous les cercles se déploient
+        steps.forEach((step, index) => {
+            const circle = step.querySelector("span");
+            const dot = step.querySelector("span > span");
+
+            gsap.fromTo(circle,
+                {
+                    width: 0,
+                    height: 0,
+                    borderWidth: 0,
+                    outlineWidth: 0,
+                    opacity: 0
+                },
+                {
+                    width: 32,
+                    height: 32,
+                    borderWidth: 2,
+                    outlineWidth: 4,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.2)",
+                    delay: index * 0.1
+                }
+            );
+
+            gsap.fromTo(dot,
+                {
+                    width: 0,
+                    height: 0,
+                    opacity: 0
+                },
+                {
+                    width: 10,
+                    height: 10,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "back.out(2)",
+                    delay: index * 0.1 + 0.2
+                }
+            );
+        });
+
+        // Animation de la ligne de progression au démarrage
+        gsap.fromTo(progressLine,
+            { height: "0%" },
+            {
+                height: "25%",
+                duration: 1,
+                ease: "power2.inOut",
+                delay: 0.5
+            }
+        );
+
+        updateSteps(false);
+
+        // Boutons
+        document.getElementById("next").addEventListener("click", () => {
+            if (currentStep < steps.length) {
+                currentStep++;
+
+                // Animation supplémentaire pour le nouveau cercle actif
+                const activeCircle = steps[currentStep - 1].querySelector("span");
+                gsap.fromTo(activeCircle,
+                    { scale: 0 },
+                    {
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "back.out(1.7)",
+                        onComplete: () => {
+                            updateSteps(false);
+                        }
+                    }
+                );
+
+                steps.forEach(step => {
+                    gsap.set(step.querySelector("span"), { zIndex: 10 });
+                });
+            }
+        });
+
+        document.getElementById("prev").addEventListener("click", () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateSteps(false);
+                steps.forEach(step => {
+                    gsap.set(step.querySelector("span"), { zIndex: 10 });
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
