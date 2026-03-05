@@ -1857,6 +1857,66 @@ Uncomment this CSS to use it in the project. Leave this message for future hand-
       // Initialize the map when the page loads
       window.onload = initMap;
     </script>
+
+    <script>
+      // Initialisation
+      gsap.registerPlugin(SplitText, ScrollTrigger);
+
+      // Sélectionner tous les éléments avec la classe naaa-char
+      document.querySelectorAll('.naaa-char').forEach(element => {
+        // Split le texte en caractères
+        const splittedTitle = new SplitText(element, {
+          type: "words,chars",
+          noBalance: true
+        });
+
+        // Direction par défaut (1 = droite, -1 = gauche)
+        const direction = 1;
+
+        // Set initial state
+        gsap.set(splittedTitle.chars, {
+          opacity: 0,
+          rotateY: 70 * direction,
+          x: (8 * direction) + "rem"
+        });
+
+        // Create timeline
+        const tl = gsap.timeline({
+          paused: true
+        });
+
+        // Add animations
+        tl.fromTo(splittedTitle.chars,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            ease: "power2.out",
+            duration: 0.4,
+            stagger: 0.03 * direction
+          }, 0
+        ).fromTo(splittedTitle.chars,
+          {
+            x: (8 * direction) + "rem",
+            rotateY: 70 * direction
+          },
+          {
+            x: 0,
+            rotateY: 0,
+            ease: "expo.out",
+            duration: 1.25,
+            stagger: 0.03 * direction
+          }, "<"
+        );
+
+        // Create ScrollTrigger
+        ScrollTrigger.create({
+          trigger: element,
+          start: "top 75%",
+          toggleActions: 'play reverse play reverse',
+          animation: tl
+        });
+      });
+    </script>
 </body>
 
 </html>
