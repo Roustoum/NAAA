@@ -6010,7 +6010,6 @@ figcaption {
 }
 
 .form_checkbox-field {
-  pointer-events: none;
   border-radius: .75rem;
   justify-content: flex-start;
   width: 18rem;
@@ -7912,7 +7911,7 @@ figcaption {
 }
 
 .main-wrapper_overlay {
-  z-index: 99;
+  z-index: 999999999999999;
   cursor: pointer;
   width: 100vw;
   height: 100%;
@@ -10598,7 +10597,7 @@ figcaption {
   }
 
   .main-wrapper_overlay {
-    z-index: 99;
+    z-index: 999999999999999;
     background-color: #000000b3;
   }
 
@@ -11706,4 +11705,20 @@ figcaption {
   font-size: 1rem;
   font-weight: 600;
   color: #D2AF38;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
